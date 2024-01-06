@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enrollment Form - Apex Pianist</title>
+    <link rel="stylesheet" type="text/css" href="../header.css">
+    <link rel="stylesheet" type="text/css" href="form.css">
+</head>
+<body>
+    <div class="header">
+        <a href="../index.html">
+            <img src="../logo_white.png"/>
+            <div class="title">
+                <h1>Apex Pianist Dubai</h1>
+            </div>
+        </a>
+    </div>
+    <p>
+        Please fill out this form completely. Clicking submit will redirect you to an email with all the information there. (You can still edit the email afterwards)
+    </p>
+    <form action="javascript:sendMail();">
+        <div class="form_element">Lesson type:
+        <select onchange="update()" name="lesson" id="lesson">
+            <option value="initial">Initial</option>
+            <option value="double">Initial (2 persons)</option>
+            <option value="triple">Initial (3 persons)</option>
+            <option value="grade 1">Grade 1</option>
+            <option value="grade 2">Grade 2</option>
+            <option value="grade 3">Grade 3</option>
+            <option value="grade 4">Grade 4</option>
+            <option value="grade 5">Grade 5</option>
+            <option value="grade 6">Grade 6</option>
+            <option value="grade 7">Grade 7</option>
+            <option value="grade 8">Grade 8</option>
+        </select></div>
+        <div class="form_element">Pupil's first name:
+        <input type="text" name="fname1" id="fname1"></div>
+        <div class="form_element">Pupil's surname:
+        <input type="text" name="lname1" id="lname1"></div>
+        <div class="form_element">Age:
+        <input type="number" name="age1" id="age1"></div>
+        <div id="extra1"><div class="form_element">Pupil's first name:
+        <input type="text" name="fname2" id="fname2"></div>
+        <div class="form_element">Pupil's surname:
+        <input type="text" name="lname2" id="lname2"></div>
+        <div class="form_element">Age:
+        <input type="number" name="age2" id="age2"></div></div>
+        <div id="extra2"><div class="form_element">Pupil's first name:
+        <input type="text" name="fname3" id="fname3"></div>
+        <div class="form_element">Pupil's surname:
+        <input type="text" name="lname3" id="lname3"></div>
+        <div class="form_element">Age:
+        <input type="number" name="age3" id="age3"></div></div>
+        <div class="form_element">Phone Number:
+        +971<input type="tel" name="phone" id="phone"></div>
+        <div class="form_element">Address:<br>
+        <input type="text" name="addr1" id="addr1"><br>
+        <input type="text" name="addr2" id="addr2"><br>
+        <input type="text" name="addr3" id="addr3"></div>
+        <div class="form_element"><input type="submit" value="Submit"></div>
+    </form>
+    <script>
+
+pupils = 1
+
+function update() {
+    var lesson = document.getElementById('lesson');
+    var lesson_selected = lesson.options[lesson.selectedIndex].value;
+    if (lesson_selected == "double") {
+        pupils = 2
+        document.getElementById('extra1').style.display = "block";
+        document.getElementById('extra2').style.display = "none";
+    } else if (lesson_selected == "triple") {
+        pupils = 3
+        document.getElementById('extra1').style.display = "block";
+        document.getElementById('extra2').style.display = "block";
+    } else {
+        pupils = 1
+        document.getElementById('extra1').style.display = "none";
+        document.getElementById('extra2').style.display = "none";
+    }
+}
+
+function allLetters(text) {
+    return /^[a-zA-Z]*$/.test(text);
+}
+
+function allNumbers(text) {
+    return /^[0-9]*$/.test(text);
+}
+
+function sendMail() {
+    var lesson = document.getElementById('lesson');
+    var lesson_selected = lesson.options[lesson.selectedIndex].value;
+    var fname1 = document.getElementById('fname1').value;
+    var lname1 = document.getElementById('lname1').value;
+    var age1 = document.getElementById('age1').value;
+    if (fname1.length < 2 || lname1.length < 2 || !allLetters(fname1) || !allLetters(lname1)) {
+        window.alert("Please enter a valid name.");
+        return 0;
+    } else if (age1 < 6 || age1 > 99) {
+        window.alert("Please enter a valid age. (No ages below 6)");
+        return 0;
+    }
+    var subject = "New "+lesson_selected+" lessons request: "+fname1+" "+lname1;
+    if (pupils > 1) {
+        var fname2 = document.getElementById('fname2').value;
+        var lname2 = document.getElementById('lname2').value;
+        var age2 = document.getElementById('age2').value;
+        if (fname2.length < 2 || lname2.length < 2 || !allLetters(fname2) || !allLetters(lname2)) {
+            window.alert("Please enter a valid name.");
+            return 0;
+        } else if (age2 < 6 || age2 > 99) {
+            window.alert("Please enter a valid age. (No ages below 6)");
+            return 0;
+        }
+        subject += ", "+fname2+" "+lname2;
+    }
+    if (pupils > 2) {
+        var fname3 = document.getElementById('fname3').value;
+        var lname3 = document.getElementById('lname3').value;
+        var age3 = document.getElementById('age3').value;
+        if (fname3.length < 2 || lname3.length < 2 || !allLetters(fname3) || !allLetters(lname3)) {
+            window.alert("Please enter a valid name.");
+            return 0;
+        } else if (age3 < 6 || age3 > 99) {
+            window.alert("Please enter a valid age. (No ages below 6)");
+            return 0;
+        }
+        subject += ", "+fname3+" "+lname3;
+    }
+    var phone = document.getElementById('phone').value;
+    if (phone.length != 9 || !allNumbers(phone)) {
+        window.alert("Please enter a valid phone number.");
+        return 0;
+    }
+    phone = "+971"+phone
+    if (document.getElementById('addr1').value.length < 2) {
+        window.alert("Please enter an address.");
+        return 0;
+    }
+    var address = document.getElementById('addr1').value + ", " + document.getElementById('addr2').value + ", " + document.getElementById('addr3').value;
+    if (pupils == 2) {
+        body = "Student 1: "+fname1+" "+lname1+" (Age: "+age1+") | Student 2: "+fname2+" "+lname2+"(Age: "+age2+")";
+    } else if (pupils == 3) {
+        body = "Student 1: "+fname1+" "+lname1+" (Age: "+age1+") | Student 2: "+fname2+" "+lname2+" (Age: "+age2+") | Student 3: "+fname3+" "+lname3+" (Age: "+age3+")";
+    } else {
+        body = "Student: "+fname1+" "+lname1+" (Age: "+age1+")";
+    }
+    body += " | Contact number: "+phone+" | Address: "+address;
+    if (window.confirm("Are you sure everything you have filled out is correct?")) {
+        // window.open('mailto:email@email.com?subject='+subject+'&body='+body);
+        window.location.replace('../index.html');
+    }
+}
+
+    </script>
+</body>
+</html>

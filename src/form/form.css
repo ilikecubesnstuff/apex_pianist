@@ -1,0 +1,26 @@
+body {
+    background-color: lightgreen;
+}
+
+p, form {
+    font-family: "Century Schoolbook", serif;
+    font-size: 1.5em;
+    padding: 10px;
+}
+
+.form_element {
+    padding: 10px;
+}
+
+input, select {
+    font-family: "Century Schoolbook", serif;
+    font-size: 1em;
+}
+
+#extra1 {
+    display: none;
+}
+
+#extra2 {
+    display: none;
+}

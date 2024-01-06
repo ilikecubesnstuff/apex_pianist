@@ -1,0 +1,19 @@
+body {
+    background-color: pink;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2em;
+}
+
+p {
+    font-family: "Century Schoolbook", serif;
+    font-size: 1.5em;
+}
+
+.picture {
+    float: left;
+    padding: 15px;
+    height: 31em;
+}

@@ -1,0 +1,29 @@
+.tabs {
+    height: 50px;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+.tabs a {
+    position: relative;
+    display: inline-block;
+    height: inherit;
+    text-align: center;
+    font-size: 40px;
+    width: 33.33%;
+    padding: 0px;
+    margin: 0px;
+}
+
+.about {
+    background-color: red;
+}
+
+.lessons {
+    background-color: green;
+}
+
+.contact {
+    background-color: blue;
+}

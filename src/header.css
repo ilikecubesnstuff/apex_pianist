@@ -1,0 +1,40 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+h1, h2, p, a {
+    font-family: "Century Schoolbook", serif;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.header {
+    background-color: orange;
+    height: 135px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.header img {
+    width: 5em;
+    margin: 8px;
+}
+
+.title {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 5em;
+    right: 0;
+    text-align: center;
+}
+
+.title h1 {
+    color: black;
+    font-size: 4.8em;
+    margin: 16px;
+}

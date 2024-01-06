@@ -1,0 +1,33 @@
+body {
+    background-color: lightblue;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2em;
+}
+
+p {
+    font-family: "Century Schoolbook", serif;
+    font-size: 1.5em;
+    margin: 20px;
+}
+
+#email {
+    color: #cf0849;
+}
+
+.mapouter {
+    text-align:right;
+    float:right;
+    margin: 40px;
+    height:350px;
+    width:50%;
+}
+
+.gmap_canvas  {
+    overflow:hidden;
+    background:none!important;
+    height:100%;
+    width:100%;
+}
